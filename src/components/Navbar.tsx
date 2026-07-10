@@ -1,4 +1,5 @@
 "use client";
+import { getInitials, getUser } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import {
@@ -13,7 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
@@ -34,6 +35,23 @@ export function Navbar({
 }: NavbarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [userName, setUserName] = useState("User");
+  const [userInitials, setUserInitials] = useState("U");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const user = getUser();
+    if (user) {
+      setUserName(user.name);
+      setUserInitials(getInitials(user.name));
+    }
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -43,7 +61,10 @@ export function Navbar({
   ];
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl">
+    <nav className={cn(
+      "sticky top-0 z-50 border-b border-indigo-700/30 bg-gradient-to-r from-indigo-700 via-violet-700 to-purple-700 backdrop-blur-xl transition-shadow duration-300",
+      scrolled && "shadow-lg shadow-indigo-900/40"
+    )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -51,7 +72,7 @@ export function Navbar({
             {isDashboard && (
               <button
                 onClick={onMenuClick}
-                className="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors lg:hidden"
+                className="p-2 rounded-lg text-indigo-200 hover:bg-white/15 transition-colors lg:hidden"
               >
                 <Menu className="h-5 w-5" />
               </button>
@@ -61,10 +82,10 @@ export function Navbar({
                 <Sparkles className="h-4 w-4 text-white" />
               </div>
               <div className="hidden sm:block">
-                <span className="font-bold text-slate-900 dark:text-white text-sm leading-tight block">
-                  IdeaForge AI
+                <span className="font-bold text-white text-sm leading-tight block">
+                  AI Smart Business Generator
                 </span>
-                <span className="text-[10px] text-slate-400 leading-tight block">
+                <span className="text-[10px] text-indigo-200 leading-tight block">
                   IBM Powered
                 </span>
               </div>
@@ -81,8 +102,8 @@ export function Navbar({
                   className={cn(
                     "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
                     pathname === link.href
-                      ? "text-indigo-600 bg-indigo-50 dark:text-indigo-400 dark:bg-indigo-950/50"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-slate-800"
+                      ? "text-white bg-white/20"
+                      : "text-indigo-100 hover:text-white hover:bg-white/15"
                   )}
                 >
                   {link.label}
@@ -105,37 +126,37 @@ export function Navbar({
           <div className="flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-lg text-indigo-200 hover:bg-white/15 transition-colors"
             >
               {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
             {isDashboard ? (
               <>
-                <button className="relative p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                <button className="relative p-2 rounded-lg text-indigo-200 hover:bg-white/15 transition-colors">
                   <Bell className="h-4 w-4" />
                   <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-indigo-500 rounded-full"></span>
                 </button>
-                <div className="flex items-center gap-2 ml-1 pl-3 border-l border-slate-200 dark:border-slate-700">
+                <div className="flex items-center gap-2 ml-1 pl-3 border-l border-indigo-400/40">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-white text-xs font-bold">
-                    JD
+                    {userInitials}
                   </div>
-                  <span className="hidden sm:block text-sm font-medium text-slate-700 dark:text-slate-200">
-                    John D.
+                  <span className="hidden sm:block text-sm font-medium text-white">
+                    {userName}
                   </span>
-                  <ChevronDown className="h-3 w-3 text-slate-400" />
+                  <ChevronDown className="h-3 w-3 text-indigo-200" />
                 </div>
               </>
             ) : (
               <>
-                <Link href="/dashboard">
-                  <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
+                <Link href="/login">
+                  <Button variant="ghost" size="sm" className="hidden sm:inline-flex text-white hover:bg-white/15 hover:text-white">
                     Sign In
                   </Button>
                 </Link>
-                <Link href="/generate">
-                  <Button size="sm">
+                <Link href="/signup">
+                  <Button size="sm" className="bg-white text-indigo-700 hover:bg-white/90 shadow-none">
                     <Sparkles className="h-3.5 w-3.5" />
-                    Generate
+                    Sign Up
                   </Button>
                 </Link>
               </>
@@ -144,7 +165,7 @@ export function Navbar({
             {/* Mobile menu toggle */}
             {!isDashboard && (
               <button
-                className="md:hidden p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                className="md:hidden p-2 rounded-lg text-indigo-200 hover:bg-white/15 transition-colors"
                 onClick={() => setMobileOpen(!mobileOpen)}
               >
                 {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -159,7 +180,7 @@ export function Navbar({
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 space-y-1"
+          className="md:hidden border-t border-indigo-600/40 bg-indigo-800 px-4 py-3 space-y-1"
         >
           {navLinks.map((link) => (
             <Link
@@ -169,18 +190,23 @@ export function Navbar({
               className={cn(
                 "block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors",
                 pathname === link.href
-                  ? "text-indigo-600 bg-indigo-50 dark:text-indigo-400"
-                  : "text-slate-600 dark:text-slate-400"
+                  ? "text-white bg-white/20"
+                  : "text-indigo-200 hover:text-white hover:bg-white/15"
               )}
             >
               {link.label}
             </Link>
           ))}
-          <div className="pt-2 border-t border-slate-200 dark:border-slate-700">
-            <Link href="/generate">
-              <Button size="sm" className="w-full">
+          <div className="pt-2 border-t border-indigo-600/40 flex gap-2">
+            <Link href="/login" className="flex-1">
+              <Button variant="ghost" size="sm" className="w-full text-white hover:bg-white/15 hover:text-white border border-white/30">
+                Sign In
+              </Button>
+            </Link>
+            <Link href="/signup" className="flex-1">
+              <Button size="sm" className="w-full bg-white text-indigo-700 hover:bg-white/90 shadow-none">
                 <Sparkles className="h-3.5 w-3.5" />
-                Generate Ideas
+                Sign Up
               </Button>
             </Link>
           </div>

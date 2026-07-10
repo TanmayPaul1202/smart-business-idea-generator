@@ -3,6 +3,7 @@ import { DashboardLayout } from "@/components/DashboardLayout";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { getUser } from "@/lib/auth";
 import { DEMO_IDEAS, MARKET_DATA, TRENDING_TOPICS } from "@/lib/demo-data";
 import { motion } from "framer-motion";
 import {
@@ -41,6 +42,9 @@ const fadeUp: any = {
 };
 
 export default function DashboardPage() {
+  const user = typeof window !== "undefined" ? getUser() : null;
+  const firstName = user?.name?.split(" ")[0] ?? "there";
+
   return (
     <DashboardLayout>
       {/* Header */}
@@ -51,7 +55,7 @@ export default function DashboardPage() {
       >
         <div>
           <h1 className="text-2xl font-black text-slate-900 dark:text-white">
-            Welcome back, John 👋
+            Welcome back, {firstName} 👋
           </h1>
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-0.5">
             Your AI workspace is ready. 3 new ideas are waiting for review.

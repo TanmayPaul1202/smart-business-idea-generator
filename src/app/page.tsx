@@ -68,7 +68,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 overflow-x-hidden">
+    <div className="min-h-screen bg-white dark:bg-slate-950">
       <Navbar theme={theme} toggleTheme={toggleTheme} />
 
       {/* ── HERO ── */}
@@ -82,6 +82,172 @@ export default function LandingPage() {
         <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-violet-200/40 dark:bg-violet-900/20 rounded-full blur-3xl" />
         <div className="absolute top-40 right-10 w-64 h-64 bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl" />
 
+        {/* ── Floating decorative elements ── */}
+
+        {/* Icon bubbles — pure icon, no text */}
+        <motion.div
+          animate={{ y: [0, -16, 0], rotate: [0, 8, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-16 left-[8%] hidden lg:flex w-12 h-12 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-indigo-100 dark:border-indigo-900/50 shadow-lg shadow-indigo-100/40 items-center justify-center"
+        >
+          <div className="w-7 h-7 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center">
+            <Sparkles className="h-3.5 w-3.5 text-white" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, 14, 0], rotate: [0, -6, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+          className="absolute top-28 right-[6%] hidden lg:flex w-12 h-12 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-violet-100 dark:border-violet-900/50 shadow-lg shadow-violet-100/40 items-center justify-center"
+        >
+          <div className="w-7 h-7 rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 flex items-center justify-center">
+            <TrendingUp className="h-3.5 w-3.5 text-white" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, -12, 0], x: [0, 6, 0] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+          className="absolute bottom-28 left-[5%] hidden lg:flex w-12 h-12 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-emerald-100 dark:border-emerald-900/50 shadow-lg shadow-emerald-100/40 items-center justify-center"
+        >
+          <div className="w-7 h-7 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
+            <Zap className="h-3.5 w-3.5 text-white" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, 12, 0], x: [0, -5, 0] }}
+          transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+          className="absolute bottom-24 right-[7%] hidden lg:flex w-12 h-12 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-amber-100 dark:border-amber-900/50 shadow-lg shadow-amber-100/40 items-center justify-center"
+        >
+          <div className="w-7 h-7 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+            <Target className="h-3.5 w-3.5 text-white" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.6 }}
+          className="absolute top-1/2 left-[2%] hidden xl:flex w-11 h-11 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-rose-100 dark:border-rose-900/50 shadow-lg items-center justify-center"
+        >
+          <div className="w-6 h-6 rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center">
+            <Brain className="h-3 w-3 text-white" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, 11, 0], rotate: [0, -5, 0] }}
+          transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute top-[55%] right-[3%] hidden xl:flex w-11 h-11 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-cyan-100 dark:border-cyan-900/50 shadow-lg items-center justify-center"
+        >
+          <div className="w-6 h-6 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
+            <Layers className="h-3 w-3 text-white" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, -9, 0] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+          className="absolute top-[20%] left-[2%] hidden xl:flex w-10 h-10 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-purple-100 dark:border-purple-900/50 shadow-lg items-center justify-center"
+        >
+          <div className="w-6 h-6 rounded-xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center">
+            <Database className="h-3 w-3 text-white" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          animate={{ y: [0, 13, 0] }}
+          transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-[30%] right-[2%] hidden xl:flex w-10 h-10 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-indigo-100 dark:border-indigo-900/50 shadow-lg items-center justify-center"
+        >
+          <div className="w-6 h-6 rounded-xl bg-gradient-to-br from-indigo-400 to-blue-500 flex items-center justify-center">
+            <Shield className="h-3 w-3 text-white" />
+          </div>
+        </motion.div>
+
+        {/* Spinning outline squares */}
+        <motion.div
+          animate={{ rotate: [0, 360] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[18%] left-[20%] hidden xl:block w-9 h-9 rounded-xl border-2 border-indigo-300/50 dark:border-indigo-700/40"
+        />
+        <motion.div
+          animate={{ rotate: [360, 0] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[28%] right-[20%] hidden xl:block w-7 h-7 rounded-lg border-2 border-violet-300/50 dark:border-violet-700/40"
+        />
+        <motion.div
+          animate={{ rotate: [0, 360] }}
+          transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[60%] left-[14%] hidden xl:block w-6 h-6 rounded-lg border-2 border-purple-300/40 dark:border-purple-700/40"
+        />
+        <motion.div
+          animate={{ rotate: [360, 0] }}
+          transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[35%] right-[14%] hidden xl:block w-10 h-10 rounded-2xl border-2 border-rose-300/40 dark:border-rose-700/30"
+        />
+        <motion.div
+          animate={{ rotate: [0, 360] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[15%] left-[22%] hidden xl:block w-5 h-5 rounded-md border-2 border-cyan-300/50 dark:border-cyan-700/40"
+        />
+
+        {/* Spinning filled diamonds (rotated squares) */}
+        <motion.div
+          animate={{ rotate: [45, 405], y: [0, -10, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[12%] right-[22%] hidden xl:block w-4 h-4 bg-indigo-400/30 dark:bg-indigo-500/20 rounded-sm"
+        />
+        <motion.div
+          animate={{ rotate: [45, 405], y: [0, 10, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-[18%] left-[28%] hidden xl:block w-3.5 h-3.5 bg-violet-400/30 dark:bg-violet-500/20 rounded-sm"
+        />
+        <motion.div
+          animate={{ rotate: [45, 405], x: [0, 6, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="absolute top-[45%] right-[22%] hidden xl:block w-3 h-3 bg-purple-400/35 dark:bg-purple-500/20 rounded-sm"
+        />
+
+        {/* Pulsing rings */}
+        <motion.div
+          animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeOut" }}
+          className="absolute top-[30%] left-[10%] hidden xl:block w-8 h-8 rounded-full border border-indigo-400/50 dark:border-indigo-500/30"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0, 0.3] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeOut", delay: 1.5 }}
+          className="absolute bottom-[35%] right-[10%] hidden xl:block w-10 h-10 rounded-full border border-violet-400/40 dark:border-violet-500/30"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.6, 1], opacity: [0.35, 0, 0.35] }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeOut", delay: 0.8 }}
+          className="absolute top-[70%] left-[30%] hidden xl:block w-6 h-6 rounded-full border border-purple-400/50 dark:border-purple-500/30"
+        />
+
+        {/* Floating dots — more, spread wider */}
+        {[
+          { top: "12%", left: "12%",  delay: 0,   size: "w-2 h-2",     color: "bg-indigo-400/50" },
+          { top: "72%", left: "16%",  delay: 1.2, size: "w-1.5 h-1.5", color: "bg-violet-400/50" },
+          { top: "22%", right: "13%", delay: 0.6, size: "w-2.5 h-2.5", color: "bg-purple-400/40" },
+          { top: "67%", right: "16%", delay: 1.8, size: "w-1.5 h-1.5", color: "bg-indigo-300/60" },
+          { top: "47%", left: "7%",   delay: 0.9, size: "w-2 h-2",     color: "bg-violet-300/50" },
+          { top: "38%", right: "7%",  delay: 1.4, size: "w-2 h-2",     color: "bg-rose-400/40" },
+          { top: "85%", left: "35%",  delay: 0.3, size: "w-3 h-3",     color: "bg-cyan-400/40" },
+          { top: "8%",  right: "35%", delay: 1.1, size: "w-1.5 h-1.5", color: "bg-amber-400/50" },
+          { top: "55%", left: "25%",  delay: 2,   size: "w-2 h-2",     color: "bg-emerald-400/40" },
+          { top: "18%", left: "38%",  delay: 0.7, size: "w-1.5 h-1.5", color: "bg-indigo-500/40" },
+        ].map((dot, i) => (
+          <motion.div
+            key={i}
+            animate={{ y: [0, -14, 0], opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 2.8 + i * 0.35, repeat: Infinity, ease: "easeInOut", delay: dot.delay }}
+            className={`absolute hidden lg:block rounded-full ${dot.size} ${dot.color}`}
+            style={{ top: dot.top, left: (dot as any).left, right: (dot as any).right }}
+          />
+        ))}
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left */}
@@ -91,17 +257,6 @@ export default function LandingPage() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="space-y-8"
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 }}
-              >
-                <Badge className="px-3 py-1.5 text-xs gap-1.5 bg-indigo-50 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
-                  <Sparkles className="h-3 w-3" />
-                  IBM Hackathon 2025 — AI Agent Challenge
-                </Badge>
-              </motion.div>
-
               <div className="space-y-4">
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight text-slate-900 dark:text-white">
                   Generate{" "}
@@ -694,30 +849,54 @@ export default function LandingPage() {
       </Section>
 
       {/* ── FOOTER ── */}
-      <footer className="border-t border-slate-200 dark:border-slate-800 py-12 bg-white dark:bg-slate-950">
+      <footer className="border-t border-indigo-700/30 py-12 bg-gradient-to-r from-indigo-700 via-violet-700 to-purple-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
                   <Sparkles className="h-4 w-4 text-white" />
                 </div>
-                <span className="font-bold text-slate-900 dark:text-white">IdeaForge AI</span>
+                <span className="font-bold text-white">IdeaForge AI</span>
               </div>
-              <p className="text-sm text-slate-500">IBM-powered business idea generator for the next generation of entrepreneurs.</p>
+              <p className="text-sm text-indigo-200">IBM-powered business idea generator for the next generation of entrepreneurs.</p>
             </div>
             {[
-              { title: "Product", links: ["Generate", "Dashboard", "Trends", "Pricing"] },
-              { title: "IBM AI", links: ["Granite Models", "Langflow", "Orchestrate", "watsonx"] },
-              { title: "Company", links: ["About", "Blog", "Careers", "Contact"] },
+              {
+                title: "Product",
+                links: [
+                  { label: "Generate", href: "/generate" },
+                  { label: "Dashboard", href: "/dashboard" },
+                  { label: "Trends", href: "/trends" },
+                  { label: "Pricing", href: "/#pricing" },
+                ],
+              },
+              {
+                title: "IBM AI",
+                links: [
+                  { label: "Granite Models", href: "https://www.ibm.com/products/watsonx-ai" },
+                  { label: "Langflow", href: "https://www.langflow.org" },
+                  { label: "Orchestrate", href: "https://www.ibm.com/products/ibm-orchestrate" },
+                  { label: "watsonx", href: "https://www.ibm.com/watsonx" },
+                ],
+              },
+              {
+                title: "Company",
+                links: [
+                  { label: "About", href: "/about" },
+                  { label: "Blog", href: "/blog" },
+                  { label: "Careers", href: "/careers" },
+                  { label: "Contact", href: "/contact" },
+                ],
+              },
             ].map(({ title, links }) => (
               <div key={title}>
-                <h4 className="font-semibold text-slate-900 dark:text-white mb-3 text-sm">{title}</h4>
+                <h4 className="font-semibold text-white mb-3 text-sm">{title}</h4>
                 <ul className="space-y-2">
-                  {links.map((link) => (
-                    <li key={link}>
-                      <Link href="#" className="text-sm text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                        {link}
+                  {links.map(({ label, href }) => (
+                    <li key={label}>
+                      <Link href={href} className="text-sm text-indigo-200 hover:text-white transition-colors">
+                        {label}
                       </Link>
                     </li>
                   ))}
@@ -725,11 +904,11 @@ export default function LandingPage() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-slate-200 dark:border-slate-800 gap-4">
-            <p className="text-sm text-slate-500">© 2025 IdeaForge AI. Built for IBM Hackathon.</p>
+          <div className="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-indigo-600/40 gap-4">
+            <p className="text-sm text-indigo-200">© 2025 IdeaForge AI. Built for IBM Hackathon.</p>
             <div className="flex items-center gap-4">
-              <Badge variant="outline" className="text-xs">IBM Powered</Badge>
-              <Badge variant="outline" className="text-xs">SOC 2 Type II</Badge>
+              <Badge variant="outline" className="text-xs border-indigo-400/50 text-indigo-100">IBM Powered</Badge>
+              <Badge variant="outline" className="text-xs border-indigo-400/50 text-indigo-100">SOC 2 Type II</Badge>
             </div>
           </div>
         </div>
