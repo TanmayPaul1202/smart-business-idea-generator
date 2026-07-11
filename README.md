@@ -276,5 +276,5 @@ Ensure the `data/` directory is writable by the Node.js process.
 
 ---
 
-<p align="center">Tanmay Paul/p>
+<p align="center">Tanmay Paul
 
