@@ -63,6 +63,17 @@ export default function GeneratePage() {
 
   const handleGenerate = () => {
     if (!prompt.trim() && uploadedFiles.length === 0) return;
+    // Persist inputs so the processing page can call the API
+    sessionStorage.setItem(
+      "ideaforge_generate_params",
+      JSON.stringify({
+        prompt,
+        industry: selectedIndustry,
+        budget: selectedBudget,
+        audience: selectedAudience,
+        market: selectedCountry,
+      })
+    );
     router.push("/processing");
   };
 

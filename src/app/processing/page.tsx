@@ -48,6 +48,7 @@ export default function ProcessingPage() {
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [done, setDone] = useState(false);
   const [dots, setDots] = useState(".");
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const dotInterval = setInterval(() => {
@@ -57,18 +58,47 @@ export default function ProcessingPage() {
   }, []);
 
   useEffect(() => {
+    // Kick off the real API call in parallel with the animation
+    const raw = sessionStorage.getItem("ideaforge_generate_params");
+    const params = raw ? JSON.parse(raw) : { prompt: "AI-powered business idea" };
+
+    const apiCall = fetch("/api/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(params),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.result) {
+          sessionStorage.setItem("ideaforge_result", JSON.stringify(data.result));
+        } else if (data?.error) {
+          setError(data.error);
+        }
+      })
+      .catch(() => setError("Generation failed. Please try again."));
+
+    // Run the step animation; navigate only after BOTH animation + API resolve
     let stepIndex = 0;
-    let total = 0;
+    let animDone = false;
+    let apiFetched = false;
+
+    const tryNavigate = () => {
+      if (animDone && apiFetched) {
+        setDone(true);
+        setTimeout(() => router.push("/results"), 1200);
+      }
+    };
+
+    apiCall.finally(() => { apiFetched = true; tryNavigate(); });
 
     const advance = () => {
       if (stepIndex >= PROCESSING_STEPS.length) {
-        setDone(true);
-        setTimeout(() => router.push("/results"), 1500);
+        animDone = true;
+        tryNavigate();
         return;
       }
       setCurrentStep(stepIndex);
       const duration = PROCESSING_STEPS[stepIndex].duration;
-      total += duration;
       const capturedIndex = stepIndex;
       setTimeout(() => {
         setCompletedSteps((prev) => [...prev, capturedIndex]);
@@ -134,7 +164,18 @@ export default function ProcessingPage() {
           </div>
 
           <AnimatePresence mode="wait">
-            {done ? (
+            {error ? (
+              <motion.div key="error" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+                <h1 className="text-2xl font-black text-rose-400 mb-2">Something went wrong</h1>
+                <p className="text-rose-300 text-sm mb-4">{error}</p>
+                <button
+                  onClick={() => { sessionStorage.removeItem("ideaforge_result"); window.history.back(); }}
+                  className="px-4 py-2 rounded-xl bg-white/10 text-white text-sm hover:bg-white/20 transition-colors"
+                >
+                  ← Go back and try again
+                </button>
+              </motion.div>
+            ) : done ? (
               <motion.div
                 key="done"
                 initial={{ opacity: 0, y: 10 }}

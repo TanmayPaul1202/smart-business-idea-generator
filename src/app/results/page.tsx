@@ -29,6 +29,7 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -47,9 +48,22 @@ import {
   YAxis,
 } from "recharts";
 
-const r = DEMO_RESULT;
-
 export default function ResultsPage() {
+  const [r, setR] = useState(DEMO_RESULT);
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem("ideaforge_result");
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        // Deep-merge with DEMO_RESULT so charts/arrays always have fallbacks
+        setR({ ...DEMO_RESULT, ...parsed });
+      } catch {
+        // malformed — keep DEMO_RESULT
+      }
+    }
+  }, []);
+
   return (
     <DashboardLayout>
       {/* Header */}

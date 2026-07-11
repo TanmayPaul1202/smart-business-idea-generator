@@ -136,7 +136,7 @@ export default function CareersPage() {
         <div className="space-y-4">
           {filtered.map(({ id, title, dept, location, type, level, color }, i) => (
             <motion.div key={id} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} custom={i}
-              className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 flex flex-col sm:flex-row sm:items-center gap-4 hover:shadow-md hover:border-indigo-200 dark:hover:border-indigo-800 transition-all cursor-pointer">
+              className="group bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 flex flex-col sm:flex-row sm:items-center gap-4 hover:shadow-md hover:border-indigo-200 dark:hover:border-indigo-800 transition-all">
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${color} flex items-center justify-center text-white font-black text-sm shrink-0`}>
                 {title.split(" ").slice(0, 2).map((w) => w[0]).join("")}
               </div>
@@ -150,9 +150,11 @@ export default function CareersPage() {
               </div>
               <div className="flex items-center gap-3 shrink-0">
                 <span className={`text-xs px-2.5 py-1 rounded-full border font-medium ${LEVEL_COLORS[level]}`}>{level}</span>
-                <Button size="sm" variant="outline" className="group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-all">
-                  Apply <ArrowRight className="h-3.5 w-3.5" />
-                </Button>
+                <Link href={`/careers/apply/${id}`}>
+                  <Button size="sm" variant="outline" className="group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-all">
+                    Apply <ArrowRight className="h-3.5 w-3.5" />
+                  </Button>
+                </Link>
               </div>
             </motion.div>
           ))}

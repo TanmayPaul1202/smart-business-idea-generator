@@ -93,7 +93,21 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(79,70,229,0.15);
+  box-shadow:
+    /* red   – top-left */
+    -6px  -6px 16px 0px rgba(255,  50,  50, 0.35),
+    /* orange – top */
+     0px  -8px 16px 0px rgba(255, 150,   0, 0.35),
+    /* yellow – top-right */
+     6px  -6px 16px 0px rgba(220, 210,   0, 0.35),
+    /* green  – right */
+     8px   0px 16px 0px rgba(30,  200,  60, 0.35),
+    /* blue   – bottom-right */
+     6px   6px 16px 0px rgba(30,  130, 255, 0.35),
+    /* indigo – bottom */
+     0px   8px 16px 0px rgba(80,   60, 240, 0.3),
+    /* violet – bottom-left */
+    -6px   6px 16px 0px rgba(180,   0, 220, 0.35);
 }
 
 /* ── Animations ── */

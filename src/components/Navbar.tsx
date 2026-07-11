@@ -58,6 +58,8 @@ export function Navbar({
     { href: "/dashboard", label: "Dashboard" },
     { href: "/generate", label: "Generate" },
     { href: "/trends", label: "Trends" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (
