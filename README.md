@@ -173,44 +173,11 @@ IBM_PROJECT_ID=
 
 ---
 
-## Project Structure
+Screenshot :
+<img width="1536" height="636" alt="image" src="https://github.com/user-attachments/assets/734a2b66-c314-45d5-9f31-80564d347541" />
+<img width="1527" height="630" alt="image" src="https://github.com/user-attachments/assets/32ede9e1-170b-4378-8a7d-e3300cc6f723" />
+<img width="1536" height="701" alt="image" src="https://github.com/user-attachments/assets/da560474-8a89-4195-9928-c0df6764728f" />
 
-```
-src/
-├── app/
-│   ├── page.tsx              # Landing page
-│   ├── layout.tsx            # Root layout & metadata
-│   ├── generate/             # Idea input form
-│   ├── processing/           # Agent workflow animation
-│   ├── results/              # Full analysis report
-│   ├── dashboard/            # User dashboard
-│   ├── saved/                # Saved ideas library
-│   ├── canvas/               # Business Model Canvas
-│   ├── roadmap/              # Product roadmap
-│   ├── pitch/                # Pitch generator
-│   ├── idea-map/             # React Flow node graph
-│   ├── competitor/           # Competitor analysis
-│   ├── research/             # Market research view
-│   ├── trends/               # Trend intelligence
-│   ├── settings/             # User settings
-│   ├── login/ signup/        # Authentication pages
-│   ├── about/ blog/ careers/ contact/  # Marketing pages
-│   └── api/
-│       ├── auth/             # login · logout · signup · me
-│       ├── generate/         # IBM Granite generation endpoint
-│       └── ideas/            # CRUD for saved ideas
-├── components/
-│   ├── DashboardLayout.tsx   # Authenticated shell with sidebar
-│   ├── Navbar.tsx            # Public navigation bar
-│   ├── Sidebar.tsx           # Dashboard sidebar
-│   └── ui/                   # Shared UI primitives (button, card, badge …)
-└── lib/
-    ├── auth.ts               # Client-side auth helpers
-    ├── server-auth.ts        # Server-side JWT verification
-    ├── db.ts                 # File-based JSON database
-    ├── demo-data.ts          # Demo result, industries, testimonials …
-    └── utils.ts              # Shared utilities (cn, etc.)
-```
 
 ---
 
