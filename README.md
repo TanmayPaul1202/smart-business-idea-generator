@@ -276,4 +276,5 @@ Ensure the `data/` directory is writable by the Node.js process.
 
 ---
 
-<p align="center">Built with ❤️ for the IBM SkillsBuild Hackathon</p>
+<p align="center">Tanmay Paul/p>
+
