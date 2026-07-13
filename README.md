@@ -1,4 +1,4 @@
-# IdeaForge AI — Smart Business Idea Generator
+# Smart Business Idea Generator
 
 > **IBM SkillsBuild Hackathon Project**
 > Generate context-aware, fully-validated business ideas in minutes — powered by IBM Granite models on watsonx.ai.
