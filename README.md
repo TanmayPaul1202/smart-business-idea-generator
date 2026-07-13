@@ -1,6 +1,6 @@
 # Smart Business Idea Generator
 
-> **IBM SkillsBuild Hackathon Project**
+> **IBM SkillsBuild Project**
 > Generate context-aware, fully-validated business ideas in minutes — powered by IBM Granite models on watsonx.ai.
 
 ---
